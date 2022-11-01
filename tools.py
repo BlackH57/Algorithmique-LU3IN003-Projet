@@ -6,6 +6,6 @@ def del_space(x: str) -> str:
 
     acc = ""
     for c in x:
-        if not c == " ":
+        if c not in [" ", "\n"]:
             acc += c
     return acc

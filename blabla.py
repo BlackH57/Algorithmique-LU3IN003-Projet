@@ -1,15 +1,14 @@
 import math
 import time
-from cmath import inf
-
-import properties
 import tools
+import properties
 
 
 def nb_align(n: int, m: int) -> int:
     """
-    Prend en entré la taille de deux mots x et y
-    Retourne le nombre d'allignement possible
+    :param n: Taille d'un mot x
+    :param m: Taille d'un mot y
+    :return: Nombre d'alignement de (x,y)
     """
     nb_aligns = 0
     for k in range(n - m, m):
@@ -19,42 +18,7 @@ def nb_align(n: int, m: int) -> int:
 
 # Tache A
 
-def DIST_NAIF_REC_1(x: str, y: str, i: int, j: int, c: float, dist: float):
-    if i == len(x) - 1 and j == len(y) - 1:
-        if c < dist:
-            dist = c
-
-    else:
-        if i < len(x) - 1 and j < len(y) - 1:
-            if x[i + 1] not in {' ', '\n'} and y[j + 1] not in {' ', '\n'}:
-                if x[i + 1] == y[j + 1]:
-                    dist = DIST_NAIF_REC_1(x, y, i + 1, j + 1, c, dist)
-                else:
-                    if (x[i + 1] in {'A', 'T'} and y[j + 1] in {'A', 'T'}) or (
-                            x[i + 1] in {'G', 'C'} and y[j + 1] in {'G', 'C'}):
-                        dist = DIST_NAIF_REC_1(x, y, i + 1, j + 1, c + 3, dist)
-                    else:
-                        dist = DIST_NAIF_REC_1(x, y, i + 1, j + 1, c + 4, dist)
-            else:
-                dist = DIST_NAIF_REC_1(x, y, i + 1, j + 1, c, dist)
-        if i < len(x) - 1:
-            if x[i + 1] not in {' ', '\n'}:
-                dist = DIST_NAIF_REC_1(x, y, i + 1, j, c + properties.c_del, dist)
-            else:
-                dist = DIST_NAIF_REC_1(x, y, i + 1, j, c, dist)
-        if j < len(y) - 1:
-            if y[j + 1] not in {' ', '\n'}:
-                dist = DIST_NAIF_REC_1(x, y, i, j + 1, c + properties.c_ins, dist)
-            else:
-                dist = DIST_NAIF_REC_1(x, y, i, j + 1, c, dist)
-    return dist
-
-
-def DIST_NAIF_1(x, y):
-    return DIST_NAIF_REC_1(x, y, -1, -1, 0, inf)
-
-
-def DIST_NAIF_REC_2(x: str, y: str, i: int, j: int, c: float, dist: float) -> float:
+def DIST_NAIF_REC(x: str, y: str, i: int, j: int, c: float, dist: float) -> float:
     """
     :param x: mot
     :param y: mot
@@ -72,42 +36,67 @@ def DIST_NAIF_REC_2(x: str, y: str, i: int, j: int, c: float, dist: float) -> fl
 
     else:
         if i < n and j < m:
-            dist = DIST_NAIF_REC_2(x, y, i + 1, j + 1, c + properties.c_sub(x[i + 1], y[j + 1]), dist)
+            dist = DIST_NAIF_REC(x, y, i + 1, j + 1, c + properties.c_sub(x[i + 1], y[j + 1]), dist)
         if i < n:
-            dist = DIST_NAIF_REC_2(x, y, i + 1, j, c + properties.c_del, dist)
+            dist = DIST_NAIF_REC(x, y, i + 1, j, c + properties.c_del, dist)
         if j < m:
-            dist = DIST_NAIF_REC_2(x, y, i, j + 1, c + properties.c_ins, dist)
+            dist = DIST_NAIF_REC(x, y, i, j + 1, c + properties.c_ins, dist)
 
     return dist
 
 
-def DIST_NAIF_2(x: str, y: str):
+def DIST_NAIF(x: str, y: str):
     """
     :param x: un mot
     :param y: un mot
     :return: distance entre x et y
     """
-    return DIST_NAIF_REC_2(x, y, 0, 0, 0, math.inf)
+    return DIST_NAIF_REC(x, y, -1, -1, 0, math.inf)
 
 
-# _________________________________________________________________
-def main():
-    f = open("Instances_genome/Inst_0000010_7.adn", 'r')
-    # 12_56 : 62.93026399612427 s
-    n = f.readline()
-    m = f.readline()
-    x = tools.del_space(f.readline())
-    y = tools.del_space(f.readline())
-    print("x: " + x, "y: " + y)
+def file_dist_naif_test(path: str):
+    # ouverture du fichier
+    file = open(path, 'r')
 
-    # print(x,len(x))
-    # print(y,len(y))
-    f.close()
+    # on passe les deux premieres lignes
+    n = tools.del_space(file.readline())
+    m = tools.del_space(file.readline())
 
+    # on stock les deux mots
+    x = tools.del_space(file.readline())
+    y = tools.del_space(file.readline())
+
+    # affichage des deux mots
+    print("x:" + x + "\ttaille : " + n)
+    print("y:" + y + "\ttaille : " + m)
+
+    # fermeture du fichier
+    file.close()
+
+    # Debut du chrono
     start = time.time()
-    print(DIST_NAIF_2(x, y))
+
+    dist = DIST_NAIF(x, y)
+    print("Distance entre x et y : ", dist)
+
+    # Fin du chrono
     end = time.time()
-    print(end - start)
+
+    print("temps d'execution : ", end - start)
+
+    # 12_56 : 62.93026399612427 s
+
+
+def main():
+    print("============== Test distance naive pour Inst_0000010_44 ==============")
+    file_dist_naif_test("Instances_genome/Inst_0000010_44.adn")
+    print("============== Fin Test ==============")
+    print("============== Test distance naive pour Inst_0000010_7 ==============")
+    file_dist_naif_test("Instances_genome/Inst_0000010_7.adn")
+    print("============== Fin Test ==============")
+    print("============== Test distance naive pour Inst_0000010_8.adn ==============")
+    file_dist_naif_test("Instances_genome/Inst_0000010_8.adn")
+    print("============== Fin Test ==============")
 
 
 if __name__ == "__main__":
