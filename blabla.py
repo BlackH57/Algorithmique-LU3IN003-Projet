@@ -11,8 +11,8 @@ def nb_align(n: int, m: int) -> int:
     :return: Nombre d'alignement de (x,y)
     """
     nb_aligns = 0
-    for k in range(n - m, m):
-        nb_aligns = nb_aligns + math.comb(n, m - k) * ((n + 1) ** k)
+    for k in range(0, m):
+        nb_aligns = nb_aligns + math.comb(n+k, k)*math.comb(n, m-k)
     return nb_aligns
 
 
