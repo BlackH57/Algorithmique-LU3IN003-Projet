@@ -55,6 +55,11 @@ def DIST_NAIF(x: str, y: str):
 
 
 def file_dist_naif_test(path: str):
+    """
+    Affiche dans le terminale les mots, leurs longueurs, la distance et le temps mis en utilisant DIST_NAID
+    :param path: Chemin de repertoire courant au fichier que l'on souhaite lire
+    :return: None
+    """
     # ouverture du fichier
     file = open(path, 'r')
 
