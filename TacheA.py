@@ -11,7 +11,7 @@ def nb_align(n: int, m: int) -> int:
     :return: Nombre d'alignement de (x,y)
     """
     nb_aligns = 0
-    for k in range(0, m):
+    for k in range(0, m+1):
         nb_aligns = nb_aligns + math.comb(n+k, k)*math.comb(n, m-k)
     return nb_aligns
 
@@ -26,7 +26,7 @@ def DIST_NAIF_REC(x: str, y: str, i: int, j: int, c: float, dist: float) -> floa
     :param j: indice parcourant y
     :param c: coup de l'allignement pour (x_[1,...,i],y_[1,...,j])
     :param dist: le meilleur alignement de (x,y) connu avant l'appel
-    :return: coup du meilleur alignement de (x,y) après l'appel
+    :return: cout du meilleur alignement de (x,y) après l'appel
     """
     n = len(x) - 1  # dernier indice de x
     m = len(y) - 1  # dernier indice de y
@@ -43,7 +43,6 @@ def DIST_NAIF_REC(x: str, y: str, i: int, j: int, c: float, dist: float) -> floa
             dist = DIST_NAIF_REC(x, y, i, j + 1, c + properties.c_ins, dist)
 
     return dist
-
 
 def DIST_NAIF(x: str, y: str):
     """
@@ -105,4 +104,18 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("======== Calcul de nombre d'alignement ========")
+    print("Nombre d'alignement pour n = 0 et m = 10 : ", nb_align(0, 10))
+    print("Nombre d'alignement pour n = 10 et m = 0 : ", nb_align(10, 0))
+    print("Nombre d'alignement pour n = 15 et m = 10 : ", nb_align(15, 10))
+    print("======== Fin ========")
+    print("")
+    print("======== Test DIST_NAIF ========")
+    print("DIST_NAIF('A', '') =", DIST_NAIF("A", ""))  # renvoi 2
+    print("DIST_NAIF('A', 'B') =", DIST_NAIF("A", "B"))  # renvoi 3
+    print("DIST_NAIF('ATCG', '') = ", DIST_NAIF("ATCG", ""))  # renvoi 8
+    print("DIST_NAIF('', 'ATCG') = ", DIST_NAIF("", "ATCG"))  # renvoi 8
+    print("DIST_NAIF('AB', 'CG') = ", DIST_NAIF("AB", "CG"))  # renvoi 8
+    print("DIST_NAIF('ATTGTA', 'ATCTTA') =", DIST_NAIF("ATTGTA", "ATCTTA"))  # renvoi 4
+    print("======== Fin Test ========")
+    #main()
