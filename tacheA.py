@@ -102,6 +102,10 @@ def main():
     file_dist_naif_test("Instances_genome/Inst_0000010_8.adn")
     print("============== Fin Test ==============")
 
+    print("============== Test distance naive pour Inst_0000012_56.adn ==============")
+    file_dist_naif_test("Instances_genome/Inst_0000012_56.adn")
+    print("============== Fin Test ==============")
+
 
 if __name__ == "__main__":
     print("======== Calcul de nombre d'alignement ========")
@@ -118,4 +122,5 @@ if __name__ == "__main__":
     print("DIST_NAIF('AB', 'CG') = ", DIST_NAIF("AB", "CG"))  # renvoi 8
     print("DIST_NAIF('ATTGTA', 'ATCTTA') =", DIST_NAIF("ATTGTA", "ATCTTA"))  # renvoi 4
     print("======== Fin Test ========")
-    #main()
+
+    main()
