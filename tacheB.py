@@ -38,6 +38,7 @@ def DIST_1(x: str, y: str):
 # Ndt : Le code est un peu different du pseudo-code. Par soucis de lisibilite on calcule
 #       le tableau dans une fonction a part
 
+
 def SOL_1(x: str, y: str, T: list[list[float]]):
     """
     :param x: Un mot
@@ -112,3 +113,9 @@ if __name__ == "__main__":
     print("PROG_DYN('ATTGTA', 'ATCTTA') =", PROG_DYN("ATTGTA", "ATCTTA"))
     print("PROG_DYN('AT', 'CG') =", PROG_DYN("AT", "CG"))
     print("============= Fin Test =============")
+
+    print("============= QUESTION 23 =============")
+    print("PROG_DYN('BALLON', 'ROND') = ", PROG_DYN("BALLON", "ROND"))
+    print("PROG_DYN('BAL', 'RO') = ", PROG_DYN("BAL", "RO"))
+    print("PROG_DYN('LON', 'ND') = ", PROG_DYN("LON", "ND"))
+    print("============= Fin QUESTION 23 =============")
