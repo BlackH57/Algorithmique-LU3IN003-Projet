@@ -63,6 +63,7 @@ def SOL_1(x: str, y: str, T: list[list[float]]):
             i -= 1
             a1 = x[i] + a1
             a2 = "-" + a2
+
         else:  # Meme demarche
             i -= 1
             j -= 1
@@ -91,31 +92,3 @@ def PROG_DYN(x: str, y: str):
     """
     T = TAB_DIST(x, y)
     return T[len(x)][len(y)], SOL_1(x, y, T)
-
-
-if __name__ == "__main__":
-    print("============= Test DIST_1 =============")
-    print("DIST_1('A', '') =", DIST_1("A", ""))  # renvoi 2
-    print("DIST_1('A', 'C') =", DIST_1("A", "C"))  # renvoi 3
-    print("DIST_1('ATCG', '') = ", DIST_1("ATCG", ""))  # renvoi 8
-    print("DIST_1('', 'ATCG') = ", DIST_1("", "ATCG"))  # renvoi 8
-    print("DIST_1('AT', 'CG') = ", DIST_1("AT", "CG"))  # renvoi 8
-    print("DIST_1('ATTGTA', 'ATCTTA') =", DIST_1("ATTGTA", "ATCTTA"))  # renvoi 4
-    print("============= Fin Test =============")
-
-    print("============= Test SOL_1 =============")
-    print("SOL_1('ATCG', 'ATCG') =", SOL_1("ATCG", "ATCG", TAB_DIST("ATCG", "ATCG")))
-    print("SOL_1('AT', 'CG') =", SOL_1("AT", "CG", TAB_DIST("AT", "CG")))
-    print("SOL_1('ATTGTA', 'ATCTTA') =", SOL_1("ATTGTA", "ATCTTA", TAB_DIST("ATTGTA", "ATCTTA")))
-    print("============= Fin Test =============")
-
-    print("============= Test PROG_DYN =============")
-    print("PROG_DYN('ATTGTA', 'ATCTTA') =", PROG_DYN("ATTGTA", "ATCTTA"))
-    print("PROG_DYN('AT', 'CG') =", PROG_DYN("AT", "CG"))
-    print("============= Fin Test =============")
-
-    print("============= QUESTION 23 =============")
-    print("PROG_DYN('BALLON', 'ROND') = ", PROG_DYN("BALLON", "ROND"))
-    print("PROG_DYN('BAL', 'RO') = ", PROG_DYN("BAL", "RO"))
-    print("PROG_DYN('LON', 'ND') = ", PROG_DYN("LON", "ND"))
-    print("============= Fin QUESTION 23 =============")
