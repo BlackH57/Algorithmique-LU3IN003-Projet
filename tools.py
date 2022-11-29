@@ -124,9 +124,9 @@ def plot_information_from_fic(path, mode, name=""):
     plt.suptitle("".join((name, " ", name_mode)))
     plt.xlabel("taille du premier mot")
     if mode == 0:
-        plt.ylabel = "time (seconde)"
+        plt.ylabel("time (seconde)")
     else:
-        plt.ylabel = "memory (byte)"
+        plt.ylabel("memory (byte)")
     plt.show()
 
 
@@ -149,7 +149,7 @@ def plot_information_from_list(lf, mode, name=""):
     plt.suptitle("".join((name, " ", name_mode)))
     plt.xlabel("taille du premier mot")
     if mode == 0:
-        plt.ylabel = "time (seconde)"
+        plt.ylabel("time (seconde)")
     else:
-        plt.ylabel = "memory (byte)"
+        plt.ylabel("memory (byte)")
     plt.show()
