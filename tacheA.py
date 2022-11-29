@@ -1,7 +1,6 @@
 import math
 import properties
 
-
 def nb_align(n: int, m: int) -> int:
     """
     :param n: Taille d'un mot x

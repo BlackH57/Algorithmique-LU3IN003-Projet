@@ -18,17 +18,23 @@ def c_sub(a: str, b: str) -> int:
     return 4
 
 
-def cost_list():
-    """
-    :return: Une liste des couts possible
-    """
-    return [c_del,
-            c_ins,
-            c_sub(concordant[0][0], concordant[0][0]),
+def cost_list_sub():
+    return [c_sub(concordant[0][0], concordant[0][0]),
             c_sub(concordant[1][0], concordant[1][0]),
             c_sub(concordant[1][0], concordant[0][0]),
             c_sub(concordant[0][0], concordant[1][0])
             ]
+
+
+def cost_list():
+    """
+    :return: Une liste des couts possible
+    """
+    return [c_del, c_ins] + cost_list_sub()
+
+
+def min_cost_sub():
+    return min(cost_list_sub())
 
 
 def min_cost():
@@ -36,6 +42,7 @@ def min_cost():
     :return: Le cout minimum des cout possibles
     """
     return min(cost_list())
+
 
 
 """

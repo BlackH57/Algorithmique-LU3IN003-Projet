@@ -20,22 +20,20 @@ def align_lettre_mot(x, y):
     m_gap = mot_gapes(N)
     c_min = math.inf    # Majoration du cout
     i_min = -1          # indice du cout min
-    minimal_cost = properties.min_cost()    # Cout minimal absolue / Minoration du cout
+    min_cost_sub = properties.min_cost_sub()    # Cout minimal trouvable en echangeant un gap par x
 
     for i in range(0, N):
         cost = properties.c_sub(x, y[i])
-        if cost == minimal_cost:
-            m_gap = "".join((m_gap[:i], x, m_gap[i + 1:]))
-            return m_gap, y
-        if cost < c_min:
+        if cost < c_min:    # Actualisation du min
             c_min = cost
             i_min = i
+            if cost == min_cost_sub:    # Si on est dans ce cas il n y a plus d'amelioration possible
+                break
 
-    if c_min > properties.c_ins:
+    if c_min - properties.c_ins > properties.c_del:
         return "".join((x, m_gap)), "".join(("-", y))
 
-    m_gap = "".join((m_gap[:i_min], x, m_gap[i_min + 1:]))
-    return m_gap, y
+    return "".join((m_gap[:i_min], x, m_gap[i_min + 1:])), y
 
 
 def coupure(x, y):
