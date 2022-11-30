@@ -5,20 +5,18 @@ import tools
 def tab_dist_test(x: str, y: str):
     _, time_used, memory_used = tools.func_profil(tacheB.TAB_DIST, x, y)
     print("Temps d'execution : ", time_used)
-    print("Memoire utilisee : ", memory_used / (1024 ** 2), "kB")
 
 
 def dist_1_test(x: str, y: str):
-    res, time_used, memory_used = tools.func_profil(tacheB.DIST_1, x, y)
+    res, time_used = tools.func_profil(tacheB.DIST_1, x, y)
     print("x: " + x + "\ttaille: ", len(x))
     print("y: " + y + "\ttaille: ", len(y))
     print("Distance d'edition entre x et y : \t", res)
     print("Temps d'execution : ", time_used)
-    print("Memoire utilisee : ", memory_used / (1024 ** 1), "kB")
 
 
 def prog_dyn_test(x: str, y: str, n=None, m=None):
-    res, time_used, memory_used = tools.func_profil(tacheB.PROG_DYN, x, y)
+    res, time_used = tools.func_profil(tacheB.PROG_DYN, x, y)
 
     if n is None:
         n = len(x)
@@ -30,7 +28,6 @@ def prog_dyn_test(x: str, y: str, n=None, m=None):
     print("Alignement minimal de (x,y) : \t", res[1])
     print("Distance d'edition : ", res[0])
     print("Temps d'execution : ", time_used)
-    print("Memoire utilisee : ", memory_used / (1024 ** 1), "kB")
 
 
 def prog_dyn_test_genome(path: str):
@@ -93,7 +90,7 @@ def question_23():
 
 
 if __name__ == "__main__":
-    # test_dist_1()
+    test_dist_1()
     test_prog_dyn()
     # question_23()
     test_genome_prog_dyn()

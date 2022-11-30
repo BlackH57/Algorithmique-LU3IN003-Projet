@@ -12,12 +12,12 @@ def measurementTacheA():
     ntm = tools.memory_time_consumption(tacheA.DIST_NAIF, allowed_time=1)
     tools.write_info_list(ntm, tacheA.DIST_NAIF)
     # tools.plot_information_from_list(ntm, mode=0, name="DIST_NAIF")
-    # tools.plot_information_from_list(ntm, mode=1)
+    # tools.plot_information_from_list(ntm, mode=1, name="DIST_NAIF")
 
 
 def measurementTacheB():
-    ntm = tools.memory_time_consumption(tacheB.PROG_DYN, allowed_time=10)
-    tools.write_info_list(ntm, tacheB.PROG_DYN)
+    ntm = tools.memory_time_consumption(tacheB.DIST_1, allowed_time=10)
+    tools.write_info_list(ntm, tacheB.DIST_1)
     # tools.plot_information_from_list(ntm, mode=0, name="PROG_DYN")
     # tools.plot_information_from_list(ntm, mode=1, name="PROG_DYN")
 
@@ -37,10 +37,10 @@ def measurementTacheD():
 
 
 if __name__ == "__main__":
-    measurementTacheA()
-    measurementTacheB()
-    measurementTacheC()
-    measurementTacheD()
+    # measurementTacheA()
+    # measurementTacheB()
+    # measurementTacheC()
+    # measurementTacheD()
 
     # lntm = tools.read_info_list("memory_and_time/DIST_NAIF.txt")
     # tools.plot_information_from_list(lntm, 0, "DIST_NAIF")
@@ -49,6 +49,10 @@ if __name__ == "__main__":
     # lntm = tools.read_info_list("memory_and_time/PROG_DYN.txt")
     # tools.plot_information_from_list(lntm, 0, "PROG_DYN")
     # tools.plot_information_from_list(lntm, 1, "PROG_DYN")
+
+    lntm = tools.read_info_list("memory_and_time/DIST_1.txt")
+    tools.plot_information_from_list(lntm, 0, "DIST_1")
+    tools.plot_information_from_list(lntm, 1, "DIST_1")
 
     # lntm = tools.read_info_list("memory_and_time/DIST_2.txt")
     # tools.plot_information_from_list(lntm, 0, "DIST_2")

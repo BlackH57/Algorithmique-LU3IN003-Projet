@@ -7,11 +7,10 @@ def nb_align_test(n: int, m: int):
     print("Nb alignement pour n = ", n, " et m = ", m, " : ", res)
     print("nombre alignement : \t", res)
     print("temps d'execution : ", time_used)
-    print("memoire utilisee : ", memory_used / (1024.0 ** 1), "kB")
 
 
 def dist_naif_test(x: str, y: str, n=None, m=None):
-    res, time_used, memory_used = tools.func_profil(tacheA.DIST_NAIF, x, y)
+    res, time_used = tools.func_profil(tacheA.DIST_NAIF, x, y)
     if n is None:
         n = len(x)
     if m is None:
@@ -20,7 +19,6 @@ def dist_naif_test(x: str, y: str, n=None, m=None):
     print("y: " + y + "\ttaille: ", m)
     print("distance : \t", res)
     print("temps d'execution :", time_used)
-    print("memoire utilisee : ", memory_used / (1024.0 ** 1), "kB")
 
 
 def dist_naif_test_genome(path: str):
@@ -81,12 +79,12 @@ def test_dist_naif_genomes():
     print("============== Test distance naive pour Inst_0000010_8.adn ==============")
     dist_naif_test_genome("Instances_genome/Inst_0000010_8.adn")
 
-    print("============== Test distance naive pour Inst_0000012_56.adn ==============")
-    dist_naif_test_genome("Instances_genome/Inst_0000012_56.adn")
-    print("============== Fin Tests ==============")
+    # print("============== Test distance naive pour Inst_0000012_56.adn ==============")
+    # dist_naif_test_genome("Instances_genome/Inst_0000012_56.adn")
+    # print("============== Fin Tests ==============")
 
 
 if __name__ == "__main__":
-    test_nb_align()
-    test_dist_naif()
+    # test_nb_align()
+    # test_dist_naif()
     test_dist_naif_genomes()
